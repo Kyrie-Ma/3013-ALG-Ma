@@ -1,3 +1,2 @@
 language = "cpp"
-run = ""
-g++ main.cpp -0 main
+run = "g++ main.cpp -0 main"
