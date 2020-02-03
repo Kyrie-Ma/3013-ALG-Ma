@@ -12,7 +12,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
-
+#include <fstream>
+#include <iomanip>
 using namespace std;
 
 /**
@@ -242,17 +243,18 @@ public:
 int main() {
   ArrayStack stack;
   int r = 0;
-
+  
+  ifstream infile("infile.txt");
   int x;
   int counter = 0;
   while(infile>>x){
     stack.CheckResize();
-    if(x%2==0)}
-        stack.push();
+    if(x%2==0){
+        stack.Push(x);
         counter++;
     }
     else{
-        stack.pop();
+        stack.Pop();
         counter++;
     }
   }
