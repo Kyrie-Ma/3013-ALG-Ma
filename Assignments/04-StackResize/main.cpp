@@ -176,17 +176,10 @@ public:
   * Returns:
   *      [bool] ; success = true
   */
-  bool Push(int x){
-    if(Full()){
-      ContainerGrow();
-    }
+  int Push(int x){
     if(!Full()){
       A[++top] = x;
-      return true;
     }
-    
-    return false;
-    
   }
 
  /**
@@ -234,8 +227,13 @@ public:
   }
 
 
-  void CHekcResize(){
-
+  void CheckResize(){
+      if(Full){
+          ContainerGrow();
+      }
+      else if(top<=(size*0.5-1)){
+          ContainerShrik();
+      }
   }
 };
 
