@@ -243,6 +243,20 @@ int main() {
   ArrayStack stack;
   int r = 0;
 
+  int x;
+  int counter = 0;
+  while(infile>>x){
+    stack.CheckResize();
+    if(x%2==0)}
+        stack.push();
+        counter++;
+    }
+    else{
+        stack.pop();
+        counter++;
+    }
+  }
+
   for(int i=0;i<20;i++){
     r = rand() % 100;
     r = i+1;
