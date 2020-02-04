@@ -228,13 +228,17 @@ public:
   }
 
 
-  void CheckResize(){
+  int CheckResize(){
+    int counter = 0;
       if(Full){
           ContainerGrow();
+          counter++;
       }
       else if(top<=(size*0.5-1)){
           ContainerShrik();
+          counter++;
       }
+      return counter;
   }
 };
 
@@ -266,7 +270,7 @@ int main() {
   outfile << "    Yuankai Ma\n\n";
   outfile << "    Max Stack Size: " <<  << endl;
   outfile << "    End Stack Size: " <<  << endl;
-  outfile << "    Stack Resize: " <<  << " times\n\n";
+  outfile << "    Stack Resize: " << stack.CheckResize() << " times\n\n";
    outfile << "######################################################################/n";
    return 0;
 }
