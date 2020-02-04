@@ -250,7 +250,7 @@ int main() {
   ArrayStack stack;
   int r = 0;
   ifstream infile;
-  infile.open("num.dat");
+  infile.open("nums.dat");
   ofstream outfile;
   outfile.open("outfile.txt");
   int x;
