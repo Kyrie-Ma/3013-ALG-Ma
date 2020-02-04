@@ -235,7 +235,7 @@ public:
           counter++;
       }
       else if(top<=(size*0.5-1)){
-        if(Empty()){
+        if(!Empty()){
           ContainerShrik();
           counter++;
         }
