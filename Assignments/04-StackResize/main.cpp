@@ -229,18 +229,18 @@ public:
 
 
   int CheckResize(){
-    int counter = 0;
+    int counter1 = 0;
       if(Full()){
           ContainerGrow();
-          counter++;
+          counter1++;
       }
       else if(top<=(size*0.5-1)){
         if(!Empty()){
           ContainerShrik();
-          counter++;
+          counter1++;
         }
       }
-      return counter;
+      return counter1;
   }
 };
 
@@ -250,7 +250,7 @@ int main() {
   ArrayStack stack;
   int r = 0;
   ifstream infile;
-  infile.open("nums.dat");
+  infile.open("num.dat");
   ofstream outfile;
   outfile.open("outfile.txt");
   int x;
