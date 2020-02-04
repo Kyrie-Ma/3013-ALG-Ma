@@ -230,13 +230,15 @@ public:
 
   int CheckResize(){
     int counter = 0;
-      if(Full){
+      if(Full()){
           ContainerGrow();
           counter++;
       }
       else if(top<=(size*0.5-1)){
+        if(Empty()){
           ContainerShrik();
           counter++;
+        }
       }
       return counter;
   }
@@ -266,6 +268,9 @@ int main() {
     }
     if(counter > counterMax){
       counterMax = counter;
+    }
+    if(counter <= 0){
+      counter = 0;
     }
   }
   outfile << "######################################################################/n";
