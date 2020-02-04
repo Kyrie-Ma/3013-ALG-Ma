@@ -244,7 +244,8 @@ int main() {
   ArrayStack stack;
   int r = 0;
   
-  ifstream infile("infile.txt");
+  ifstream infile("nums.dat");
+  ofstream outfile("outfile.txt");
   int x;
   int counter = 0;
   while(infile>>x){
@@ -255,21 +256,17 @@ int main() {
     }
     else{
         stack.Pop();
-        counter++;
+        counter--;
     }
-  }
 
-  for(int i=0;i<20;i++){
-    r = rand() % 100;
-    r = i+1;
-    if(!stack.Push(r)){
-      cout<<"Push failed"<<endl;
-    }
   }
-
-  for(int i=0;i<7;i++){
-    stack.Pop();
-  }
-
-  stack.Print();
+  outfile << "######################################################################/n";
+  outfile << "    Assignment 4 - Resizing the Stack\n";
+  outfile << "    CMPS 3013\n";
+  outfile << "    Yuankai Ma\n\n";
+  outfile << "    Max Stack Size: " <<  << endl;
+  outfile << "    End Stack Size: " <<  << endl;
+  outfile << "    Stack Resize: " <<  << " times\n\n";
+   outfile << "######################################################################/n";
+   return 0;
 }
