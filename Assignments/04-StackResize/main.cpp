@@ -142,7 +142,7 @@ public:
       return A[top--];
     }
 
-    //return -99; // some sentinel value
+    return -99; // some sentinel value
                 // not a good solution
   }
 
@@ -177,7 +177,7 @@ public:
   * Returns:
   *      [bool] ; success = true
   */
-  int Push(int x){
+  void Push(int x){
     if(!Full()){
       A[++top] = x;
     }
@@ -247,11 +247,13 @@ public:
 int main() {
   ArrayStack stack;
   int r = 0;
-  
-  ifstream infile("nums.dat");
-  ofstream outfile("outfile.txt");
+  ifstream infile;
+  infile.open("nums.dat");
+  ofstream outfile;
+  outfile.open("outfile.txt");
   int x;
   int counter = 0;
+  int counterMax = 0;
   while(infile>>x){
     stack.CheckResize();
     if(x%2==0){
@@ -262,15 +264,19 @@ int main() {
         stack.Pop();
         counter--;
     }
-
+    if(counter > counterMax){
+      counterMax = counter;
+    }
   }
   outfile << "######################################################################/n";
   outfile << "    Assignment 4 - Resizing the Stack\n";
   outfile << "    CMPS 3013\n";
   outfile << "    Yuankai Ma\n\n";
-  outfile << "    Max Stack Size: " <<  << endl;
-  outfile << "    End Stack Size: " <<  << endl;
+  outfile << "    Max Stack Size: " << counterMax << endl;
+  outfile << "    End Stack Size: " << counter << endl;
   outfile << "    Stack Resize: " << stack.CheckResize() << " times\n\n";
-   outfile << "######################################################################/n";
-   return 0;
+  outfile << "######################################################################/n";
+  infile.close();
+  outfile.close();
+  return 0;
 }
