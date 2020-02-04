@@ -273,14 +273,14 @@ int main() {
       counter = 0;
     }
   }
-  outfile << "######################################################################/n";
+  outfile << "######################################################################\n\n";
   outfile << "    Assignment 4 - Resizing the Stack\n";
   outfile << "    CMPS 3013\n";
   outfile << "    Yuankai Ma\n\n";
   outfile << "    Max Stack Size: " << counterMax << endl;
   outfile << "    End Stack Size: " << counter << endl;
   outfile << "    Stack Resize: " << stack.CheckResize() << " times\n\n";
-  outfile << "######################################################################/n";
+  outfile << "######################################################################\n";
   infile.close();
   outfile.close();
   return 0;
