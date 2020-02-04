@@ -250,7 +250,7 @@ int main() {
   ArrayStack stack;
   int r = 0;
   ifstream infile;
-  infile.open("nums.dat");
+  infile.open("num.dat");
   ofstream outfile;
   outfile.open("outfile.txt");
   int x;
@@ -262,7 +262,7 @@ int main() {
         stack.Push(x);
         counter++;
     }
-    else{
+    else if(x%2!=0){
         stack.Pop();
         counter--;
     }

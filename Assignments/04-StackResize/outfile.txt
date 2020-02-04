@@ -4,8 +4,8 @@
     CMPS 3013
     Yuankai Ma
 
-    Max Stack Size: 495
-    End Stack Size: 415
-    Stack Resize: 1 times
+    Max Stack Size: 14
+    End Stack Size: 3
+    Stack Resize: 0 times
 
 ######################################################################
