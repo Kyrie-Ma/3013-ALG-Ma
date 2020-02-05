@@ -34,7 +34,7 @@ private:
   int *A;           // pointer to array of int's
   int size;         // current max stack size
   int top;          // top of stack 
-
+  int counter1;
 public:
  /**
   * ArrayStack
@@ -52,6 +52,7 @@ public:
     size = 10;
     A = new int[size];
     top = -1;
+    counter1 = 0;
   }
 
  /**
@@ -70,6 +71,7 @@ public:
     size = s;
     A = new int[s];
     top = -1;
+    counter1 = 0;
   }
 
  /**
@@ -263,7 +265,6 @@ public:
   *      times of stack resize
   */
   int CheckResize(){
-    int counter1 = 0;
       if(Full()){
           ContainerGrow();
           counter1++;
