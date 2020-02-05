@@ -1,0 +1,11 @@
+######################################################################
+
+    Assignment 4 - Resizing the Stack
+    CMPS 3013
+    Yuankai Ma
+
+    Max Stack Size: 14
+    End Stack Size: 3
+    Stack Resize: 0 times
+
+######################################################################

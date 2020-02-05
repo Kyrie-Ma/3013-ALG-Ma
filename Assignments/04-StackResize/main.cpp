@@ -49,7 +49,7 @@ public:
   *     - NULL
   */
   ArrayStack(){
-    size = 5;
+    size = 100;
     A = new int[size];
     top = -1;
   }
@@ -213,7 +213,7 @@ public:
   }
 
   void ContainerShrik(){
-      int newSize = size*0.5;       // double size of original
+    int newSize = size*0.5;       // double size of original
     int *B = new int[newSize];  // allocate new memory
 
     for(int i=0;i<size;i++){    // copy values to new array
