@@ -49,7 +49,7 @@ public:
   *     - NULL
   */
   ArrayStack(){
-    size = 100;
+    size = 10;
     A = new int[size];
     top = -1;
   }
@@ -177,18 +177,23 @@ public:
   * Returns:
   *      [bool] ; success = true
   */
-  void Push(int x){
-    if(!Full()){
-      A[++top] = x;
+  bool Push(int x){
+    if(Full()){
+      ContainerGrow();
     }
+    else if(!Full()){
+      A[++top] = x;
+      return true;
+    }
+    return false;
   }
 
  /**
-  * Public void: Resize
+  * Public void: ContainerGrow
   * 
   * Description:
-  *      Resizes the container for the stack by doubling
-  *      its capacity
+  *      Resizes the container for the stack by time 1.75 of
+  *      its capacity if the stack is full
   * 
   * Params:
   *      NULL
@@ -212,6 +217,19 @@ public:
 
   }
 
+ /**
+  * Public void: ContainerShrik
+  * 
+  * Description:
+  *      Resizes the container for the stack by time 0.5 of
+  *      its capacity if top is smaller than half of its capacity
+  * 
+  * Params:
+  *      NULL
+  * 
+  * Returns:
+  *      NULL
+  */
   void ContainerShrik(){
     int newSize = size*0.5;       // double size of original
     int *B = new int[newSize];  // allocate new memory
@@ -227,7 +245,18 @@ public:
     A = B; 
   }
 
-
+ /**
+  * Public int: CheckResize
+  * Description:
+  *      Check the stack is full or there is half of the stack
+  *      are unless, and keep counting the number of resize
+  * 
+  * Params:
+  *      NULL
+  * 
+  * Returns:
+  *      times of stack resize
+  */
   int CheckResize(){
     int counter1 = 0;
       if(Full()){
@@ -248,7 +277,6 @@ public:
 // Simple Array Based Stack Usage:
 int main() {
   ArrayStack stack;
-  int r = 0;
   ifstream infile;
   infile.open("num.dat");
   ofstream outfile;
@@ -272,6 +300,10 @@ int main() {
     if(counter <= 0){
       counter = 0;
     }
+    
+    outfile<< x <<" ";
+    outfile<<endl;
+  
   }
   outfile << "######################################################################\n\n";
   outfile << "    Assignment 4 - Resizing the Stack\n";
@@ -281,6 +313,7 @@ int main() {
   outfile << "    End Stack Size: " << counter << endl;
   outfile << "    Stack Resize: " << stack.CheckResize() << " times\n\n";
   outfile << "######################################################################\n";
+  
   infile.close();
   outfile.close();
   return 0;
