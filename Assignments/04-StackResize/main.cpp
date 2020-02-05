@@ -101,7 +101,12 @@ public:
   *      [bool] true = full
   */
   bool Full(){
-    return (top >= size-1);
+     if(top >= size-1){
+       return true;
+     }
+     else{
+     return false;
+     }
   }
 
  /**
@@ -277,33 +282,30 @@ public:
 // Simple Array Based Stack Usage:
 int main() {
   ArrayStack stack;
-  ifstream infile;
-  infile.open("num.dat");
+  ifstream infile;                            
   ofstream outfile;
-  outfile.open("outfile.txt");
-  int x;
-  int counter = 0;
-  int counterMax = 0;
+  infile.open("nums.dat");               //read infile
+  outfile.open("outfile.txt");           //create outfile
+  int x;                                 //infile data
+  int counter = 0;                       //count the final size of stack
+  int counterMax = 0;                    //count the max size of stack
   while(infile>>x){
-    stack.CheckResize();
+    stack.CheckResize();                 //check if stack need to resize
     if(x%2==0){
-        stack.Push(x);
+        stack.Push(x);                   //push the data in the infile to the stack
         counter++;
     }
     else if(x%2!=0){
-        stack.Pop();
+        stack.Pop();                     //pop the stack value out of stack
         counter--;
     }
     if(counter > counterMax){
       counterMax = counter;
     }
-    if(counter <= 0){
+    else if(counter <= 0){
       counter = 0;
     }
-    
-    outfile<< x <<" ";
-    outfile<<endl;
-  
+    stack.CheckResize();
   }
   outfile << "######################################################################\n\n";
   outfile << "    Assignment 4 - Resizing the Stack\n";
