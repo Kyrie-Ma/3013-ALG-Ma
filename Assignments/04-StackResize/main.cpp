@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Author:           Terry Griffin
-// Email:            terry.griffin@msutexas.edu
+// Author:           Yuankai Ma
 // Label:            L01
 // Title:            Lecture 01 - Array Based Stack
 // Course:           3013
@@ -145,7 +144,10 @@ public:
   *      [int] top value if any
   */
   int Pop(){
-    if(!Empty()){
+    if(Empty()){
+      CheckResize();
+    }
+    else{
       return A[top--];
     }
 
@@ -186,9 +188,9 @@ public:
   */
   bool Push(int x){
     if(Full()){
-      ContainerGrow();
+      CheckResize();
     }
-    else if(!Full()){
+    else{
       A[++top] = x;
       return true;
     }
@@ -253,7 +255,7 @@ public:
   }
 
  /**
-  * Public int: CheckResize
+  * Public void: CheckResize
   * Description:
   *      Check the stack is full or there is half of the stack
   *      are unless, and keep counting the number of resize
@@ -262,20 +264,34 @@ public:
   *      NULL
   * 
   * Returns:
-  *      times of stack resize
+  *      NULL
   */
-  int CheckResize(){
+  void CheckResize(){
       if(Full()){
           ContainerGrow();
           counter1++;
       }
-      else if(top<=(size*0.5-1)){
+      if(top<=(size*0.5-1)){
         if(!Empty()){
           ContainerShrik();
           counter1++;
         }
       }
-      return counter1;
+  }
+
+ /**
+  * Public int: getCounter
+  * Description:
+  *      Get the counter of how many times that stack change
+  * 
+  * Params:
+  *      NULL
+  * 
+  * Returns:
+  *      times of stack resize
+  */
+  int getCounter(){
+    return counter1;
   }
 };
 
@@ -306,7 +322,6 @@ int main() {
     else if(counter <= 0){
       counter = 0;
     }
-    stack.CheckResize();
   }
   outfile << "######################################################################\n\n";
   outfile << "    Assignment 4 - Resizing the Stack\n";
@@ -314,7 +329,7 @@ int main() {
   outfile << "    Yuankai Ma\n\n";
   outfile << "    Max Stack Size: " << counterMax << endl;
   outfile << "    End Stack Size: " << counter << endl;
-  outfile << "    Stack Resize: " << stack.CheckResize() << " times\n\n";
+  outfile << "    Stack Resize: " << stack.getCounter() << " times\n\n";
   outfile << "######################################################################\n";
   
   infile.close();
