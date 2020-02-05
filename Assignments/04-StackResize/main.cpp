@@ -49,7 +49,7 @@ public:
   *     - NULL
   */
   ArrayStack(){
-    size = 10;
+    size = 5;
     A = new int[size];
     top = -1;
   }
