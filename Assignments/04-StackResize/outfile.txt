@@ -6,6 +6,6 @@
 
     Max Stack Size: 495
     End Stack Size: 415
-    Stack Resize: 74749 times
+    Stack Resize: 24834 times
 
 ######################################################################

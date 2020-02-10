@@ -1,3 +1,31 @@
+/*
+
+        ######    ###     #           
+        #     #  #   #   ##           
+        #     # #     # # #           
+        ######  #     #   #           
+        #       #     #   #           
+        #        #   #    #           
+        #         ###   #####         
+                                      
+         #####    ###     #    #####  
+        #     #  #   #   ##   #     # 
+              # #     # # #         # 
+         #####  #     #   #    #####  
+              # #     #   #         # 
+        #     #  #   #    #   #     # 
+         #####    ###   #####  #####  
+                                      
+        #     #                       
+        ##   ##   ##                  
+        # # # #  #  #                 
+        #  #  # #    #                
+        #     # ######                
+        #     # #    #                
+        #     # #    #                
+
+*/
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Author:           Yuankai Ma
@@ -33,7 +61,7 @@ private:
   int *A;           // pointer to array of int's
   int size;         // current max stack size
   int top;          // top of stack 
-  int counter1;
+  int counter1;     // time of stack resize
 public:
  /**
   * ArrayStack
@@ -102,12 +130,7 @@ public:
   *      [bool] true = full
   */
   bool Full(){
-     if(top >= size-1){
-       return true;
-     }
-     else{
-     return false;
-     }
+     return (top >= size - 1);
   }
 
  /**
@@ -145,14 +168,14 @@ public:
   */
   int Pop(){
     if(Empty()){
-      CheckResize();
+      return -200; //sentinel value
     }
     else{
-      return A[top--];
+      if(top<=(size*0.5-1)){
+      CheckResize();
+      }
+      return top--;
     }
-
-    return -99; // some sentinel value
-                // not a good solution
   }
 
  /**
@@ -190,7 +213,7 @@ public:
     if(Full()){
       CheckResize();
     }
-    else{
+    if(!Full()){
       A[++top] = x;
       return true;
     }
@@ -271,7 +294,7 @@ public:
           ContainerGrow();
           counter1++;
       }
-      if(top<=(size*0.5-1)){
+      else if(top<=(size*0.5-1)){
         if(!Empty()){
           ContainerShrik();
           counter1++;
@@ -306,8 +329,9 @@ int main() {
   int x;                                 //infile data
   int counter = 0;                       //count the final size of stack
   int counterMax = 0;                    //count the max size of stack
-  while(infile>>x){
-    stack.CheckResize();                 //check if stack need to resize
+  while(!infile.eof()){
+    infile >> x;
+    //stack.CheckResize();                 //check if stack need to resize
     if(x%2==0){
         stack.Push(x);                   //push the data in the infile to the stack
         counter++;
