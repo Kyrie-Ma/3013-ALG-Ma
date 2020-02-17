@@ -157,7 +157,9 @@ private:
      * @return              : void 
      */
     void SinkDown(int index) {
-        PickChild(index);
+        while(OnHeap(index)){
+            PickChild(index);
+        }
     }
 
     /**
