@@ -10,19 +10,19 @@ using namespace std;
  *          Heap        : default constructor
  *          Heap(int)   : overload constructor with heap size
  *      private:
- *          BubbleUp    : you comment this
- *          Left        : you comment this
- *          OnHeap      : you comment this
- *          Parent      : you comment this
- *          Right       : you comment this
- *          Swap        : you comment this
+ *          BubbleUp    : put the data in the right place
+ *          Left        : get the left child index
+ *          OnHeap      : check if the index is in the array
+ *          Parent      : get the parent index
+ *          Right       : get the right child index
+ *          Swap        : swap two data
  *          /// Fix These:
- *          SinkDown    : you comment this
- *          PickChild   : you comment this
+ *          SinkDown    : places one data into a proper place
+ *          PickChild   : find the smaller child
  *      public:
- *          Insert      : you comment this
- *          Print       : you comment this
- *          Remove      : you comment this
+ *          Insert      : insert a data into the heap
+ *          Print       : print the array out
+ *          Remove      : Removes item from top of heap
  */
 class Heap {
 private:
@@ -127,8 +127,11 @@ private:
      * @param  {int*} A   :  array pointer with unsorted values to make into a heap
      * @param  {int} size :  size of new heap
      */
-    void Heapify(int A *, int size) {
-        // do it!
+    void Heapify(int *A, int size) {
+        for (int i = 1; i < size / 2; i++)
+        {
+            SinkDown(i);
+        }
     }
 
     /**
@@ -141,7 +144,7 @@ private:
      * @return              : void 
      */
     void SinkDown(int index) {
-        //do stuff!
+        PickChild(index);
     }
 
     /**
@@ -154,7 +157,21 @@ private:
      * @return              : index to child 
      */
     int PickChild(int index) {
-        return 0; // temporary suppress of warning
+        if (end % 2 == 1) {
+            // no right child
+            return Left(index);
+        }
+        else {
+            // got two children
+            if (Right(index) < end) {
+                if (H[Right(index)] > H[Left(index)]) {
+                    return Left(index);
+                }
+                else {
+                    return Right(index);
+                }
+            }
+        }
     }
 
 public:
