@@ -208,7 +208,7 @@ int main() {
 
   W = new Dictionary;
 
-  ifstream fin("test.txt");
+  ifstream fin("dict.txt");
   string word;
   string def;
   ofstream outfile;
