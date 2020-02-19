@@ -5,8 +5,10 @@
 #include <iostream>
 //#include "JsonFacade.hpp"       // need to grab a copy from resources folder
 #include <time.h>
-#include <chrono> 
-#include "Timer.hpp"   
+#include <chrono>
+//#include <conio.h> 
+#include "Timer.hpp" 
+#include "JsonFacade.hpp";  
 using namespace std;
 
 
@@ -205,39 +207,48 @@ public:
 
 int main() {
   Dictionary *W;
+  JsonFacade *J;
 
   W = new Dictionary;
+  //J = new JsonFacade;
 
+  
   ifstream fin("dict.txt");
   string word;
   string def;
+  string c;
+  string filename;
   ofstream outfile;
+  int size;
   outfile.open("output.txt");
 Timer T;
-    T.Start();
+  T.Start();
    
-    //T.Sleep(1500); //milliseconds
+  // J->saveFile(filename = "dict_wdefs.json");
+
+  //T.Sleep(1500); //milliseconds
   while(fin>>word){
     W->Add(word);
     //W->Add2(def);
     //W->test();
   }
-    T.End(); 
 
-    double s = T.Seconds();
-    //long m = T.MilliSeconds();
+  //cout << "Enter a character\n";
+  //c =getch();
 
-    outfile <<s << " seconds" <<endl;
-    //outfile <<m << " milli" <<endl;
+  //size = J->getSize();
+  //for(int i = 0; i < size; i++){
+    //if(J->getKey)
+  //}
 
+  
+  T.End(); 
 
-  //W.Add("Ant");
-  //W->Add("Dog");
-  //W.Add("Aaron");
-  //W.Add("Aardvark");
-  //W->Add("Cow");
-  //W.Add("Rabbit");
+  double s = T.Seconds();
+  //long m = T.MilliSeconds();
 
+  outfile <<s << " seconds" <<endl;
+  //outfile <<m << " milli" <<endl;
 
   //W->Print();
 
