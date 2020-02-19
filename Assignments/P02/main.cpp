@@ -2,6 +2,11 @@
 #include <string>
 #include <fstream> 
 #include<iomanip>
+#include <iostream>
+//#include "JsonFacade.hpp"       // need to grab a copy from resources folder
+#include <time.h>
+#include <chrono> 
+#include "Timer.hpp"   
 using namespace std;
 
 
@@ -203,17 +208,28 @@ int main() {
 
   W = new Dictionary;
 
-  ifstream fin("dict.txt");
+  ifstream fin("test.txt");
   string word;
   string def;
-  //ofstream outfile;
-  //outfile.open("output.txt");
-
+  ofstream outfile;
+  outfile.open("output.txt");
+Timer T;
+    T.Start();
+   
+    //T.Sleep(1500); //milliseconds
   while(fin>>word){
     W->Add(word);
     //W->Add2(def);
     //W->test();
   }
+    T.End(); 
+
+    double s = T.Seconds();
+    //long m = T.MilliSeconds();
+
+    outfile <<s << " seconds" <<endl;
+    //outfile <<m << " milli" <<endl;
+
 
   //W.Add("Ant");
   //W->Add("Dog");
@@ -223,11 +239,11 @@ int main() {
   //W.Add("Rabbit");
 
 
-  W->Print();
+  //W->Print();
 
   //W->ReOrder();
 
-  W->Print();
+  //W->Print();
 
   delete W;
   //outfile.close();
