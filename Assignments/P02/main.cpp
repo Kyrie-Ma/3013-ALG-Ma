@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include <fstream> 
-
+#include<iomanip>
 using namespace std;
 
 
 struct Node{
   string word;
-  
+  string def;
   Node* Next;
   Node(string w){
     word = w;
@@ -59,6 +59,28 @@ public:
       traverse->Next = temp;
     }
   }
+
+  void Add2(string def){
+
+    def = LowerCase(def);
+    // create new memory
+    Node* temp = new Node(def);
+  
+    // if list is empty hook in new Node
+    if(Start == NULL){
+      Start = temp;
+    }else{
+      // get ready to walk the list
+      Node* traverse = Start;
+      while(traverse->Next != NULL){
+        // walks the list
+        traverse = traverse->Next;
+      }
+      // now at proper place to link in new memory
+      traverse->Next = temp;
+    }
+  }
+
 
   string Remove(string key){
     string temp = "";
@@ -154,18 +176,23 @@ public:
   }
 
   void Print(){
+    ofstream outfile;
+    outfile.open("output.txt");
     Node* temp = Start;
     while(temp){
-      cout<<temp->word;
+      outfile<<temp->word;
       if(temp->Next){
-        cout<<"->";
+        outfile<<"->";
       }
       temp = temp->Next;
     }
-    cout<<endl;
+    outfile<<endl;
   }
 
-
+  void test(){
+    Node* temp = Start;
+    cout << temp->word;
+  }
 
 
 };
@@ -176,27 +203,32 @@ int main() {
 
   W = new Dictionary;
 
-  ifstream fin("dictionary.txt");
+  ifstream fin("dict.txt");
   string word;
+  string def;
+  //ofstream outfile;
+  //outfile.open("output.txt");
 
-  // while(fin>>word){
-  //   W.Add(word);
-  // }
+  while(fin>>word){
+    W->Add(word);
+    //W->Add2(def);
+    //W->test();
+  }
 
   //W.Add("Ant");
-  W->Add("Dog");
+  //W->Add("Dog");
   //W.Add("Aaron");
   //W.Add("Aardvark");
-  W->Add("Cow");
+  //W->Add("Cow");
   //W.Add("Rabbit");
 
 
   W->Print();
 
-  W->ReOrder();
+  //W->ReOrder();
 
   W->Print();
 
   delete W;
-
+  //outfile.close();
 }
