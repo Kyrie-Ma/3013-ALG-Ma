@@ -1,3 +1,17 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Author:           Yuankai Ma
+// Title:            main
+//
+// Description:
+//          This program is to create a way to search world from the dictionary.
+//
+// Usage:
+//          #include "Timer.hpp"           
+//          #include "JsonFacade.hpp"               
+//          #include "Dictionary.cpp"                              
+//          #include "mygetch.hpp" 
+/////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <time.h>
 #include <chrono> 
