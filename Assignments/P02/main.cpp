@@ -1,261 +1,57 @@
 #include <iostream>
-#include <string>
-#include <fstream> 
-#include<iomanip>
-#include <iostream>
-//#include "JsonFacade.hpp"       // need to grab a copy from resources folder
 #include <time.h>
-#include <chrono>
-//#include <conio.h> 
-#include "Timer.hpp" 
-#include "JsonFacade.hpp";  
+#include <chrono> 
+#include <vector>
+#include "Timer.hpp"                 // need to grab a copy from resources folder
+#include "JsonFacade.hpp"            // need to grab a copy from resources folder
+#include "Dictionary.cpp"            // need to grab a copy from resources folder
+#include "mygetch.hpp"
 using namespace std;
 
-
-struct Node{
-  string word;
-  string def;
-  Node* Next;
-  Node(string w){
-    word = w;
-    Next = NULL;
-  }
-};
-
-class Dictionary {
-private:
-  Node* Start;
-
-  string LowerCase(string input){
-    for(int i=0;i<input.length();i++){
-      if((int)input[i] < 96){
-        input[i] += 32;
-      }
-    }
-    return input;
-  }
-
-
-public:
-
-  Dictionary(){
-    Start = NULL;
-  }
-
-  ~Dictionary(){
-    //cout<<
-  }
-
-  void Add(string word){
-
-    word = LowerCase(word);
-    // create new memory
-    Node* temp = new Node(word);
-  
-    // if list is empty hook in new Node
-    if(Start == NULL){
-      Start = temp;
-    }else{
-      // get ready to walk the list
-      Node* traverse = Start;
-      while(traverse->Next != NULL){
-        // walks the list
-        traverse = traverse->Next;
-      }
-      // now at proper place to link in new memory
-      traverse->Next = temp;
-    }
-  }
-
-  void Add2(string def){
-
-    def = LowerCase(def);
-    // create new memory
-    Node* temp = new Node(def);
-  
-    // if list is empty hook in new Node
-    if(Start == NULL){
-      Start = temp;
-    }else{
-      // get ready to walk the list
-      Node* traverse = Start;
-      while(traverse->Next != NULL){
-        // walks the list
-        traverse = traverse->Next;
-      }
-      // now at proper place to link in new memory
-      traverse->Next = temp;
-    }
-  }
-
-
-  string Remove(string key){
-    string temp = "";
-
-    if(!Start){
-      return "";
-    }else{
-      Node* cptr = Start;
-      Node* prev = Start;
-      while(cptr && cptr->word != key){
-        prev = cptr;
-        cptr = cptr->Next;
-      }
-      // if cptr then we found the word
-      if(cptr){
-        temp = cptr->word;
-        prev->Next = cptr->Next;
-        delete cptr;
-      }else{
-        // no word, return empty
-        temp = "";
-      }
-      return temp;
+int main(){
+    Timer T;
+    Dictionary D;
+    JsonFacade J("dict_w_defs.json");       // create instance of json class               
+    string key;
+    string defs;                     // key variable to access json object
+    int count=0;                     // number of character that input
+    vector<string> keys = J.getKeys();   //create a vector to store the words from infile
+    cout << "Yuankai MA\n";
+    cout<<"Number of the words in the infile is " <<keys.size()<<endl;
+    for(int i = 2; i < keys.size(); i++){    //store all words and defs into linked list
+      key = (J.getKey(i));
+      defs = (J.getValue(key));
+      D.Add(key,defs);
     }
 
-
-    return temp;
-  }
-
-  void ReOrder(){
-    // pointers for new list
-    Node* NewList = NULL;
-    Node* Tail=NULL;
-
-    int i;
-
-   while(Start != NULL){
-
-    // helper pointers to manipulate lists
-    Node* Ptr = Start;
-    Node* Min = Start;
-    Node* Prev = Start;
-    Node* MinPrev = Start;
-   
-
-      // find one minimum word in old list
-      while(Ptr != NULL){
-        if(Ptr->word < Min->word){
-          MinPrev = Prev;
-          Min = Ptr;
+    char k;             // holder for character being typed
+    string Word = "";   // var to concatenate letters to
+    cout<<"Type keys and watch what happens. Type capital Z to quit."<<endl;
+    // While capital Z is not typed keep looping
+    while ((k = getch()) != 'Z') {
+        Word += k;          // append char to word
+        if((int)k != 10){   // if k is not a space print it
+            cout << "Key: " << k << endl;
+            cout << "Word: " << Word << endl;
+            while(Word[count] != '\0'){
+              count++;
+            }
+            T.Start();               //calculate time start
+            D.findWords(Word,count);
+            T.End();                 //calculate time stop
+            double s = T.Seconds();
+            cout << D.wordNum() << " words is found in " << s << " seconds\n";
+            D.tenWords();            //cout first up to 10 words
+            D.Delete();              //delete the vector
         }
 
-        Prev = Ptr;
-        Ptr = Ptr->Next;
-      }
-      //end finding one word in old list
-
-      // add one word to new list
-
-      if(!NewList){
-        NewList = Min;
-      }else{
-        Tail->Next = Min;
-      }
-
-      Tail = Min;
-      if(MinPrev == Start){
-        Start = Start->Next;
-      }else{
-        MinPrev->Next = Min->Next;
-      }
-      
-      Min->Next = NULL;
-      i++;
-
-      // if(i>=6){
-      //   break;
-      // }
-      // adding one word to new list
-
-      // Node* Temptemptmemp = NewList;
-
-      // while(Temptemptmemp){
-      //   cout<<Temptemptmemp->word<<" ";
-      //   Temptemptmemp = Temptemptmemp->Next;
-      // }
-      // cout<<endl;
-   }
-
-   Start = NewList;
-
-
-  }
-
-  void Print(){
-    ofstream outfile;
-    outfile.open("output.txt");
-    Node* temp = Start;
-    while(temp){
-      outfile<<temp->word;
-      if(temp->Next){
-        outfile<<"->";
-      }
-      temp = temp->Next;
+        // hitting enter sets word back to empty
+        if((int)k == 10 ){
+            cout<<"----------------------------------------------------------------------\n\n";
+            cout<<"Enter pressed ... refinding words..."<<endl;
+            Word = "";
+            count =0;
+            cout<<"Type keys and watch what happens. Type capital Z to quit."<<endl << endl;
+        }
     }
-    outfile<<endl;
-  }
-
-  void test(){
-    Node* temp = Start;
-    cout << temp->word;
-  }
-
-
-};
-/////////////////////////////////////////////////////
-
-int main() {
-  Dictionary *W;
-  JsonFacade *J;
-
-  W = new Dictionary;
-  //J = new JsonFacade;
-
-  
-  ifstream fin("dict.txt");
-  string word;
-  string def;
-  string c;
-  string filename;
-  ofstream outfile;
-  int size;
-  outfile.open("output.txt");
-Timer T;
-  T.Start();
-   
-  // J->saveFile(filename = "dict_wdefs.json");
-
-  //T.Sleep(1500); //milliseconds
-  while(fin>>word){
-    W->Add(word);
-    //W->Add2(def);
-    //W->test();
-  }
-
-  //cout << "Enter a character\n";
-  //c =getch();
-
-  //size = J->getSize();
-  //for(int i = 0; i < size; i++){
-    //if(J->getKey)
-  //}
-
-  
-  T.End(); 
-
-  double s = T.Seconds();
-  //long m = T.MilliSeconds();
-
-  outfile <<s << " seconds" <<endl;
-  //outfile <<m << " milli" <<endl;
-
-  //W->Print();
-
-  //W->ReOrder();
-
-  //W->Print();
-
-  delete W;
-  //outfile.close();
 }
