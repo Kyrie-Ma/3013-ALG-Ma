@@ -46,7 +46,9 @@ private:
 
 
 public:
-  vector <string> vWords;              //vector store all the words fit the input
+  //vector store all the words fit the input
+  vector <string> vWords;   
+       
  /**
   * Dictionary(): constructor that create a linked list
   * 
