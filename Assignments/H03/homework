@@ -1,3 +1,5 @@
+1 logn n nlogn n2 n!
+40
 1 O(n)
 2 O(n)
 3 O(h)
@@ -8,4 +10,5 @@
 8 n2
 9 n(n/2)
 10 (nlogn)
-11 1023
+11 10 comparisons
+List
