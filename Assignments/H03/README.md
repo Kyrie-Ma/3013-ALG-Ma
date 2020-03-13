@@ -7,13 +7,13 @@ O(1) O(logn) O(n) O(nlogn) O(n<sup>2</sup>) O(n!)
 40 seconds
 
 - Complexities : **O(1), O(n log n), O(n), O(n<sup>2</sup>), O(log n), O(n!) , O(h)**
-- 1) Finding the max element in an unordered stack would require ___O(n)__________ operations?
-- 2) Finding the min element in an unordered queue would require ___O(n)__________ operations?
-- 3) Finding some element in some Binary Search Tree would require _____O(n)________ operations?
-- 4) Finding some element in a balanced Binary Search Tree would require ___O(nlogn)__________ operations?
-- 5) Finding some element in an ordered linked list would require ___O(n)__________ operations (worst case)?
-- 6) Finding some element in an ordered linked list would require ___O(n)/2__________ operations (average case)?
-- 7) Finding some element in an unordered linked list would require ___O(n)__________ operations (worst case)?
+- 1) Finding the max element in an unordered stack would require ______O(n)__________ operations?
+- 2) Finding the min element in an unordered queue would require ______O(n)__________ operations?
+- 3) Finding some element in some Binary Search Tree would require ________O(n)________ operations?
+- 4) Finding some element in a balanced Binary Search Tree would require ______O(nlogn)__________ operations?
+- 5) Finding some element in an ordered linked list would require ______O(n)__________ operations (worst case)?
+- 6) Finding some element in an ordered linked list would require ______O(n)/2__________ operations (average case)?
+- 7) Finding some element in an unordered linked list would require ______O(n)__________ operations (worst case)?
 
 
 - 8) For each of the following, count the number of operations where some_statement is executed based on the loops
