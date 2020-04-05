@@ -3,6 +3,7 @@
 #include<map>
 #include<iomanip>
 #include<fstream>
+#define endl "\n"
 using namespace std;
 
 vector<int> Vec;
@@ -19,7 +20,7 @@ int main() {
       Map[n]++;
   }
   for (int i = 0; i < Vec.size(); i++) {
-    cout << Vec[i] << " " << Map[Vec[i]] << "\n";
+    cout << Vec[i] << " " << Map[Vec[i]] << endl;
   }
   return 0;
 }
