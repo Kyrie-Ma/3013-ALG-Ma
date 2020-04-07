@@ -89,7 +89,7 @@ int main() {
               count2++;
            }
          }
-      cout << count2 << endl;
+      cout << count2 << endl << endl;
       count2 = 0;
       g.clean(v);
     }
