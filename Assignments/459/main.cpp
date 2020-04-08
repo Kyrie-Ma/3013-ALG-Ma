@@ -5,93 +5,80 @@
 #include <vector>
 #define endl "\n"
 using namespace std;
-bool visited[10000];
-// Graph class represents a directed graph
-// using adjacency list representation
-class Graph {
-    int V; // No. of vertices
-    vector<int> *adj;
-    int count;
 
-public:
-    Graph(int V); // Constructor
-    int print();
-    // function to add an edge to graph
-    void addEdge(int v, int w);
-    // DFS traversal of the vertices
-    // reachable from v
-    void DFS(int v);
-    void clean(int v);
-};
+typedef vector<int> vi;     // vector of integers
+typedef pair<int, int> ii;  // pair of integers
+typedef vector<ii> vii;     // vector of pairs
 
-Graph::Graph(int V) {
-    this->V = V;
-    adj = new vector<int>[V];
-}
+const int VISITED = 1;
+const int UNVISITED = -1;
 
-void Graph::addEdge(int v, int w) {
-    adj[v].push_back(w); // Add w to v’s list.
-    adj[w].push_back(v);
-}
+vi been_visited;            // container to keep track of who get visited
+vector<vii> AdjList;        // AdjList stores our edge lists
 
+int count = 0;
 
 // DFS traversal of the vertices reachable from v.
 // It uses recursive DFSUtil(
-void Graph::DFS(int v) {
-    // Mark all the vertices as not visited
-    //bool *visited = new bool[V];
-    if(visited[v] == true)
-      return;
-    visited[v]=true;
-    int x;
-    for (int i = 0; i <adj[v].size(); i++)
-      x=adj[v][i];
-    // Call the recursive helper function
-    // to print DFS traversal
-    if(visited[x] == false)
-      DFS(x);
+void DFS(int v) {
+      been_visited[v]=VISITED;
+      for (int i = 0; i <(int)AdjList[v].size(); i++){
+        ii x=AdjList[v][i];
+      
+      // Call the recursive helper function
+      // to print DFS traversal
+        if(been_visited[x.first] == UNVISITED){
+          DFS(x.first);
+        }
+      }
 }
 
-int Graph::print(){
-  count--;
-  return count;
-}
-
-void Graph::clean(int v){
+void clean(int v){
   for(int i = 0; i < v; i++)
   {
-    adj[i].clear();
-    visited[i] = false;
+    AdjList[i].clear();
+    been_visited[i] = UNVISITED;
   }
 }
 // Driver code
 int main() {
-    int n;  int count2 = 0;  string temp;
+    int n;  
+    string temp;
     cin >> n; // read in number of instances
+    int count2 = n;
     for (int i = 0; i < n; i++) {
-
+      count2--;
         char ve; // max node
         cin >> ve;
-        int v = ve - 65+1;
-        Graph g(v);
+        int v = ve - 64;
+        AdjList.resize(v + 1);
+        been_visited.resize(v+1, UNVISITED);
         cin.ignore();
         int t1, t2;
         while (getline(cin, temp)) {
-          if(temp[0]== '\0')
-            break;
+          if(temp == ""){
+             break;
+          }
           t1 = temp[0] - 65;
           t2 = temp[1] - 65;
-          g.addEdge(t1, t2);
+           AdjList[t1].push_back(make_pair(t2, 10));
+           AdjList[t2].push_back(make_pair(t1, 10));
         }
-         for (int j = 0; j < v; j++) {
-           if(visited[j] == false){
-         	    g.DFS(j);
-              count2++;
-           }
-         }
-      cout << count2 << endl << endl;
-      count2 = 0;
-      g.clean(v);
+        for (int j = 0; j < v; j++) {
+            if(been_visited[j] == UNVISITED){
+                DFS(j);
+                count++;
+            }
+        }
+      if(count2==0){
+        cout << count << endl;
+      }
+      else{
+          cout << count << endl << endl;
+      }
+      count = 0;
+      clean(v);
+      been_visited.clear();
     }
     return 0;
 }
