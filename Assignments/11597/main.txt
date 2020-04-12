@@ -1,0 +1,15 @@
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#define endl "\n"
+using namespace std;
+int main() {
+  int n, cases = 0;
+  cin >> n;
+  while (n!=0)
+  {
+    cases++;
+    cout << "Case " << cases << ": " << n/2 << endl;
+    cin >> n;
+  }
+}
