@@ -2,12 +2,14 @@
 #include<vector>
 #include <queue>
 #include <string>
+#include <limits>
+#define endl "\n"
 using namespace std;
 
 int main()
 {   
-  int c;                                                              //how many cases
-  cin >> c;
+  int c;
+  cin >> c;                                                           //cin how many cases
   while (c>0){
     int n, t, m;
     int Time = 0;
