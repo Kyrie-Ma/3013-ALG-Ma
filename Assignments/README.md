@@ -7,3 +7,10 @@
 |03-H01|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/03-H01" >H01-Banner|Banner|
 |04-H02|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/H02" >H02-Heapify Debacle|Heapify Debacle|
 |05-P02|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/P02" >P02-Processing in Linear Time|Processing in Linear Time|
+|06-H03|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/H03" >H03|H03|
+|UVA-484|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/484" >UVA-484|The Department of Redundancy Department|
+|UVA-459|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/459" >UVA-459|Graph Connectivity|
+|UVA-11597|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/11597" >UVA-11597|Spanning Subtree|
+|UVA-11172|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/11172" >UVA-11172|Relational Operators|
+|UVA-10901|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/10901" >UVA-10901|Ferry Loading III|
+|UVA-10440|<a href="https://github.com/Kyrie-Ma/3013-ALG-Ma/tree/master/Assignments/10440" >UVA-10440|Ferry Loading II|
