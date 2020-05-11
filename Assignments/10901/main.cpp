@@ -3,6 +3,7 @@
 #include <queue>
 #include <string>
 #include <limits>
+#include<algorithm>
 #define endl "\n"
 using namespace std;
 
