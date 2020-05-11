@@ -1,5 +1,5 @@
 #### 10901 Image:
-I got all output match the output in the uDebug, but I still got the rejected on uva, the output are in the output file
+I got all output match the output in the uDebug, but I still got the rejected on uva, the output are in the output.txt
 
 ![2020-05-10 (6)](https://user-images.githubusercontent.com/60235679/81503984-6a14ce00-92ac-11ea-8231-d095fcf77adf.png)
 ![2020-05-11](https://user-images.githubusercontent.com/60235679/81527787-cc0f1b00-9320-11ea-8f62-4dd616d92426.png)
