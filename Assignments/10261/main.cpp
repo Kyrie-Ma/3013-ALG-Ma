@@ -52,6 +52,7 @@ int main() {
       cout << sideQueue.front() << endl;
       sideQueue.pop();
     }
+    cout << endl;
   }
   return 0;
 }
